@@ -15,7 +15,8 @@ export default class Card extends Component{
 
     renderImage = () => {
         const fileName = this.props.hog.name.toLowerCase().split(" ").join("_")
-        return `../hog-imgs/mudblood.jpg`  
+        let pigPics = require(`../hog-imgs/${fileName}.jpg`);
+        return pigPics;
     }
 
     changeClickedState = () => {
@@ -26,7 +27,7 @@ export default class Card extends Component{
         return ( 
         <div className="card">
            <h1>{this.props.hog.name}</h1>
-           <img src= "../hog-imgs/mudblood.jpg"/>
+           <img src= {this.renderImage()}/>
            <button onClick={this.changeClickedState}>{this.state.isClicked ? "Hide Details" : "Show Details"}</button>
            <div>{this.state.isClicked ? <Hog hog={this.props.hog}/> : <p></p>} </div>
         </div>
